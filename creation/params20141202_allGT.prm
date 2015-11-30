@@ -1,0 +1,84 @@
+# -*- coding: utf-8 -*-
+
+"""Default settings for spike sorting."""
+
+experiment_name = '20141202_allGT'
+prb_file = 'imecToWhisper.prb'
+
+# -----------------------------------------------------------------------------
+# Spike detection
+# -----------------------------------------------------------------------------
+
+traces = {
+    'raw_data_files': ['20141202_allGT.dat'],
+    'n_channels': 129,
+    'dtype': 'int16',
+    'sample_rate': 25000,
+}
+
+
+spikedetekt = {
+    #'filter_low': 500.,
+    #'filter_high_factor': 0.95 * .5,  # will be multiplied by the sample rate
+    #'filter_butter_order': 3,
+
+    # Data chunks.
+    #'chunk_size_seconds': 1.,
+    #'chunk_overlap_seconds': .015,
+
+    # Threshold.
+    #'n_excerpts': 50,
+    #'excerpt_size_seconds': 1.,
+    #'use_single_threshold': True,
+    'threshold_strong_std_factor': 5.5,
+    'threshold_weak_std_factor': 2.,
+    #'detect_spikes': 'negative',
+
+    # Connected components.
+    'connected_component_join_size': 2,
+
+    # Spike extractions.
+    'extract_s_before': 10,
+    'extract_s_after': 24,
+    #'weight_power': 2,
+
+    # Features.
+    #'n_features_per_channel': 3,
+    #'pca_n_waveforms_max': 10000,
+    
+    'prb_file': 'imecToWhisper.prb'
+}
+
+
+# NOTE: the default parameters are in klustakwik2's repository.
+klustakwik2 = {
+    'drop_last_n_features': 1,
+    #'max_split_iterations': None,
+    'full_step_every': 1,
+    #'num_changed_threshold': 0.05,
+    #'penalty_k': 0.0,
+    'split_every': 50,
+    #'break_fraction': 0.0,
+    'always_split_bimodal': True,
+    'consider_cluster_deletion': 1,
+	#'subset': 50,
+    #'subset_break_fraction': 0.01,
+    #'max_quick_step_candidates': 100000000,
+    'split_first': 20,
+    #'mua_point': 2,
+    #'max_quick_step_candidates_fraction': 0.4,
+    #'dist_thresh': 9.21034037198,
+    'max_iterations': 1000,
+    'max_possible_clusters': 501,
+    #'penalty_k_log_n': 1.0,
+    'points_for_cluster_mask': 150,
+    #'fast_split': False,
+    #'prior_point': 1,
+    #'noise_point': 1,
+    #'use_noise_cluster': True,
+    'use_mua_cluster': False,
+    'num_starting_clusters': 500,
+    'save_clu_every': 10
+}
+
+
