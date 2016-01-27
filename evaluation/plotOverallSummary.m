@@ -2,7 +2,7 @@
 function plotOverallSummary(rootDir)
 
 sets = {'set1', 'set2', 'set3', 'set4', 'set5', 'set6'};
-algorithms = {'phy', 'spykingCircus', 'globalSuper', 'kiloSort'};
+algorithms = {'phy', 'spykingCircus', 'globalSuper', 'kiloSort', 'JRClust'};
 
 % rootDir = 'V:\nick\GroundTruth\';
 

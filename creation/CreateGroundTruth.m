@@ -8,19 +8,21 @@
 
 % basePath = 'N:\Warburg\20150924\';
 % filename = '20150924_1';
-% outputTag = 'GT';
-% MyCells = [1256, 1259, 1260, 1269, 1275, 1283, 1285];
-
-basePath = 'N:\M150218_NS1LAV\';
-filename = '20150601_all';
+basePath = 'J:\Warburg\20150924\';
+filename = '20150924_1_fix';
 outputTag = 'GT';
-MyCells = [4 38 47 136 243 297 883 941];
+MyCells = [1256, 1259, 1260, 1269, 1275, 1283, 1285];
+
+% basePath = 'N:\M150218_NS1LAV\';
+% filename = '20150601_all';
+% outputTag = 'GT';
+% MyCells = [4 38 47 136 243 297 883 941];
 
 ActuallyMakeOutput = true; % you can put this to false if you're just testing SVD or whatever
 outputToEmpty = false; % This will make an empty file with a little noise to put the spikes into, rather than the original
 useStaticSpikes = false; % This will insert the mean waveform at all of the spike times rather than the SVD reconstructed spikes
 
-nChansInRawFile = 129; % in the file, total, including non-neural
+nChansInRawFile = 128; % in the file, total, including non-neural
 
 nSVDs = 6; % to use in the reconstruction
 
@@ -38,8 +40,8 @@ KwikFile = [basePath filename '.kwik'];
 DatFile = [basePath filename '.dat'];
 OutputFile = [basePath filename '_' outputTag '.dat'];
 % chanMap = imecChanMap();
-load('forPRBimecToWhisper.mat'); % gives "chanMap" and "connected"
-
+% load('forPRBimecToWhisper.mat'); % gives "chanMap" and "connected"
+chanMap = 1:128; connected = true(1,128);
 
 
 fprintf('Loading spike times...');
@@ -98,7 +100,7 @@ Target = memmapfile(OutputFile, 'Format', {'int16', [nChansInRawFile, (FileInf.b
 clear gtTimes Chans gtChans
 %%
 for c=1:length(MyCells)
-    close all
+%     close all
     MyCell = MyCells(c);
     fprintf('cell %d: ', MyCell);
     MyTimes = Res(find(Clu==MyCell));%FileBase ='\\zserver.ioo.ucl.ac.uk\Data\multichanspikes\M140528_NS1\20141202\20141202_all';
@@ -128,7 +130,7 @@ for c=1:length(MyCells)
     % compute mean spike and get channels by thresholding
     FullMeanSpike = mean(FullSpikes,3);
     FullMeanSpike0 = bsxfun(@minus,FullMeanSpike,FullMeanSpike(:,1));
-    figure(1);
+    figure;
     subplot(1,2,1); imagesc(FullMeanSpike0(chanMap,:)); 
     title('Mean spike');
     subplot(1,2,2); imagesc(FullMeanSpike0(chanMap,:)<Thresh); 
@@ -152,7 +154,7 @@ for c=1:length(MyCells)
     ddMySpikes = diff(dMySpikes, 1, 2);
 
     % plot mean detrended waveform
-    figure(2);
+    figure;
     MeanSpike = mean(dMySpikes,3);
     imagesc(MeanSpike(MyChanOrder,:));
     title('Detrended spike on suprathreshold channels');
@@ -170,7 +172,7 @@ for c=1:length(MyCells)
     end
 
     % Show reconstruction quality
-    figure(3)
+    figure
     Offsets =  repmat(300*(1:nChans)',[1 nT]);
     % Colors = colorcube(nChans+3);
     % set(gca, 'colororder', Colors(1:nChans,:));

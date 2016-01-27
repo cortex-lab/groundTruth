@@ -348,8 +348,19 @@ ylabel('median initial score')
 makepretty;
 
 
+%% new mode
+answersRootDir = 'V:\www\phy.cortexlab.net\data\sortingComparison\datasets\';
+submissionRootDir = 'V:\www\phy.cortexlab.net\data\sortingComparison\results\';
+algorithmName = 'JRClust';
+setName = 'set6';
 
+% eval(['spikeTimes = ' setName '.testRes; clusterIDs = ' setName '.testClu;'])
+% fid = fopen([setName '/' algorithmName '_' setName '_spikeClusters.txt'], 'w');
+% fprintf(fid,'%d\n', clusterIDs(:));
+% fclose(fid)
+% fid = fopen([setName '/' algorithmName '_' setName '_spikeTimes.txt'], 'w');
+% fprintf(fid,'%d\n', spikeTimes(:));
+% fclose(fid)
 
-
-
+runComparisonAndUpdateResults(setName, algorithmName, submissionRootDir, answersRootDir)
 

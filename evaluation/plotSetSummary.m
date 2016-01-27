@@ -1,6 +1,6 @@
 function plotSetSummary(rootDir, setName)
 
-algorithms = {'phy', 'spykingCircus', 'globalSuper', 'kiloSort'};
+algorithms = {'phy', 'spykingCircus', 'globalSuper', 'kiloSort', 'JRClust'};
 
 % rootDir = 'V:\nick\GroundTruth\';
 
