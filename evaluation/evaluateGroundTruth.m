@@ -44,3 +44,21 @@ fprintf(1, 'There were %d ground truth spikes, and sorted cluster %d missed %.2f
     nGT, gtClusterID, missRate*100);
 fprintf(1, 'There were %d spikes in sorted cluster %d, and %.2f%% of these were false positives.\n', ...
     nSorted, gtClusterID, fpRate*100);
+
+return;
+
+%% test cases
+
+st = [1 2 3 4 5]; clu = [1 1 1 2 1]; gtClu = 1; gtST = [1 2 3];
+[missRate, fpRate] = evaluateGroundTruth(st, clu, gtClu, gtST)
+% 0 miss, 0.25 fp
+
+%%
+st = [1 2 3 4 5]; clu = [1 1 1 2 1]; gtClu = 1; gtST = [1 2 3 4];
+[missRate, fpRate] = evaluateGroundTruth(st, clu, gtClu, gtST)
+% 0.25 miss, 0.25 fp
+
+%%
+st = [1 2 3 4 5]; clu = [1 1 2 2 1]; gtClu = 1; gtST = [1 2 3 4];
+[missRate, fpRate] = evaluateGroundTruth(st, clu, gtClu, gtST)
+% 0.5 miss, 0.33 fp

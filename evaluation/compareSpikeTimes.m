@@ -62,8 +62,8 @@ switch useAlgorithm
         numMatch = Counts(2);
         %[ccg, t] = CCG([rComp(:);rGT(:)], [zeros(length(rComp),1);ones(length(rGT),1)], jitter, 0, 1, [], [], []);
         
-        miss = (length(rGT)-numMatch)/length(rGT); % missed these spikes, as a proportion of the total true spikes
-        fp = (length(rComp)-numMatch)/length(rComp); % number of comparison spikes not near a GT spike, as a proportion of the number of guesses
+        miss = double(length(rGT)-numMatch)/double(length(rGT)); % missed these spikes, as a proportion of the total true spikes
+        fp = double(length(rComp)-numMatch)/double(length(rComp)); % number of comparison spikes not near a GT spike, as a proportion of the number of guesses
         
     case 3
         
