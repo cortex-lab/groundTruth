@@ -48,7 +48,10 @@ fprintf(1, 'There were %d spikes in sorted cluster %d, and %.2f%% of these were 
 return;
 
 %% wrapper given a phy directory
+
 % specify myPhyDir, gtClusterID
+% myPhyDir = ...
+% gtClusterID = ...
 
 pars = loadParamsPy(fullfile(myPhyDir, 'params.py'));
 ss = readNPY(fullfile(myPhyDir, 'spike_times.npy'));
@@ -56,9 +59,9 @@ st = double(ss)/pars.sample_rate;
 clu = readNPY(fullfile(myPhyDir, 'spike_clusters.npy'));
 
 % load gtSpikeTimes here!
+% gtST = ...
 
-
-[missRate, fpRate] = evaluateGroundTruth(st, clu, gtClu, gtST);
+[missRate, fpRate] = evaluateGroundTruth(st, clu, gtClusterID, gtST);
 
 
 
