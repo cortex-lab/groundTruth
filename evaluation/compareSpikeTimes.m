@@ -6,7 +6,7 @@ function [miss, fp] = compareSpikeTimes(rComp, rGT)
 
 useAlgorithm = 2;
 
-jitter = 12; % number of samples separation less than which two spikes are considered "the same"
+jitter = 20; % number of samples separation less than which two spikes are considered "the same"
 
 if length(rComp)>2*length(rGT)
     % skip this for performance reasons. If it truly does contain all the
